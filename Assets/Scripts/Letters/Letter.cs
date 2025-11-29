@@ -1,8 +1,10 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Letter : MonoBehaviour
 {
     public enum Destination { House1, House2, House3 }
+    private Destination destination;
 
     private bool pickedUp = false;
 
@@ -14,9 +16,12 @@ public class Letter : MonoBehaviour
         playerTransform = FindAnyObjectByType<PlayerInteraction>().transform;
         player = playerTransform.GetComponent<PlayerInteraction>();
     }
+
+    public void SetDestination(Destination des) { destination = des; }
+    public Destination GetDestination() { return destination; }
+
     public void OnInteract()
     {
-        Debug.Log("oninteract");
         if (!pickedUp)
         {
             PickUp();
@@ -24,7 +29,6 @@ public class Letter : MonoBehaviour
     }
     private void PickUp()
     {
-        Debug.Log("Pickedup");
         pickedUp = true;
         player.withLetter = true;
 
@@ -33,5 +37,11 @@ public class Letter : MonoBehaviour
 
         transform.SetParent(playerTransform);
         transform.position = playerTransform.position;
+    }
+
+    public void Deliver()
+    {
+        player.withLetter = false;
+        Destroy(gameObject);
     }
 }
