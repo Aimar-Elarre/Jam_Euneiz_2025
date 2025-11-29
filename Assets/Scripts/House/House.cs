@@ -17,7 +17,7 @@ public class House : MonoBehaviour
             }
         }
     }
-    private void letterRecieved()
+    public void letterRecieved()
     {
         Debug.Log("CartaRecivida");
     }
