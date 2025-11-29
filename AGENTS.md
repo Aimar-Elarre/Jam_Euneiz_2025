@@ -6,9 +6,9 @@
   - Tags:
     - Untagged, Respawn, Finish, EditorOnly, MainCamera, Player, GameController
   - Layers:
-    - Default, TransparentFX, Ignore Raycast, ground, Water, UI
+    - Default, TransparentFX, Ignore Raycast, ground, Water, UI, CameraColision
 - Active game object:
-  - Name: Square
+  - Name: LimitesCamara
   - Tag: Untagged
-  - Layer: Default
+  - Layer: CameraColision
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
