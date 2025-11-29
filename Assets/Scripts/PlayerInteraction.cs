@@ -8,26 +8,26 @@ public class PlayerInteraction : MonoBehaviour
     private float interactionRange = 0.8f;
 
     private InputSystem_Actions inputActions;
-    private bool Interaction = false;
+    private bool interaction = false;
 
 
     private void Awake()
     {
         inputActions = new InputSystem_Actions();
 
-        inputActions.Player.Interact.performed += ctx => Interaction = true;
-        inputActions.Player.Interact.canceled += ctx => Interaction = false;
+        inputActions.Player.Interact.performed += ctx => { Debug.Log("Interact"); interaction = true; };
+        inputActions.Player.Interact.canceled += ctx => interaction = false;
     }
 
     void OnEnable() => inputActions.Player.Enable();
     void OnDisable() => inputActions.Player.Disable();
 
-    void Update()
+    void FixedUpdate()
     {
-        Debug.Log("e");
 
-        if (!withLetter && Interaction == true)
+        if (!withLetter && interaction)
         {
+            Debug.Log("recoger");
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, interactionRange);
 
             Letter nearestLetter = null;
