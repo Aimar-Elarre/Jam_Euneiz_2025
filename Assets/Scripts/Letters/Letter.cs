@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Letter : MonoBehaviour
 {
-    public enum Destination { House1, House2, House3 }
+    public enum Destination { House1, House2, House3, House4, House5 }
     private Destination destination;
 
     private bool pickedUp = false;
