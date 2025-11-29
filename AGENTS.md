@@ -8,7 +8,7 @@
   - Layers:
     - Default, TransparentFX, Ignore Raycast, ground, Water, UI, CameraColision
 - Active game object:
-  - Name: LimitesCamara
+  - Name: Square
   - Tag: Untagged
-  - Layer: CameraColision
+  - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

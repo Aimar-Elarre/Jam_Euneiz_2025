@@ -19,6 +19,10 @@ public class PlayerMovement : MonoBehaviour
     public float groundCheckRadius = 0.1f;
     public LayerMask groundLayer;
 
+    [Header("Cameras")]
+    public GameObject camera1;
+    public GameObject camera2;
+
     private Rigidbody2D rb;
 
     // Input System
@@ -26,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
 
     private bool isGrounded;
+    private bool cameraSwitch = false;
 
     void Awake()
     {
@@ -40,6 +45,9 @@ public class PlayerMovement : MonoBehaviour
 
         inputActions.Player.Jump.performed += ctx => jumpPressed = true;
         inputActions.Player.Jump.canceled += ctx => jumpPressed = false;
+
+        inputActions.Player.Sprint.performed += ctx => cameraSwitch = true;
+        inputActions.Player.Sprint.canceled += ctx => cameraSwitch = false;
     }
 
     void OnEnable() => inputActions.Player.Enable();
@@ -61,17 +69,22 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        // MOVIMIENTO
+        // Mobimiento
         float speed = isGrounded ? groundSpeed : airSpeed;
 
         rb.linearVelocity = new Vector2(moveInput.x * speed, rb.linearVelocity.y);
 
-        // SALTO
+        // Salto
         if (jumpPressed && isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpVelocity);
             jumpPressed = false;
         }
+
+        //Cambio De Camara
+        camera1.SetActive(!cameraSwitch);
+        camera2.SetActive(cameraSwitch);
+
     }
     void OnDrawGizmos()
     {
