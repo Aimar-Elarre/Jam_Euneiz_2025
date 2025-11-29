@@ -32,6 +32,9 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     private bool cameraSwitch = false;
 
+    [SerializeField]
+    private Animator animator;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -73,6 +76,32 @@ public class PlayerMovement : MonoBehaviour
         float speed = isGrounded ? groundSpeed : airSpeed;
 
         rb.linearVelocity = new Vector2(moveInput.x * speed, rb.linearVelocity.y);
+        animator.SetFloat("Speed", Mathf.Abs(rb.linearVelocity.x));
+
+        if (isGrounded)
+        {
+            animator.SetBool("isJumping", false);
+            if (rb.linearVelocityY < 0)
+            {
+                animator.SetBool("isFalling", true);
+            }
+            else
+            {
+                animator.SetBool("isFalling", false);
+            }
+        }
+        else
+        {
+            if (rb.linearVelocityY > 0)
+            {
+                animator.SetBool("isJumping", true);
+            }
+            else
+            {
+                animator.SetBool("isJumping", false);
+                animator.SetBool("isFalling", true);
+            }
+        }
 
         // Salto
         if (jumpPressed && isGrounded)
@@ -85,7 +114,18 @@ public class PlayerMovement : MonoBehaviour
         camera1.SetActive(!cameraSwitch);
         camera2.SetActive(cameraSwitch);
 
+        //Rotacion de el player
+        if (moveInput.x > 0)
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0, -1 * 180, 0));
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
+        }
+        
     }
+
     void OnDrawGizmos()
     {
         if (groundCheck == null) return;
