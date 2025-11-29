@@ -13,11 +13,16 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Awake()
     {
+        inputActions = new InputSystem_Actions();
+
         inputActions.Player.Interact.performed += ctx => Interaction = true;
         inputActions.Player.Interact.canceled += ctx => Interaction = false;
     }
-   
-    private void FixedUpdate()
+
+    void OnEnable() => inputActions.Player.Enable();
+    void OnDisable() => inputActions.Player.Disable();
+
+    void Update()
     {
         Debug.Log("e");
 
