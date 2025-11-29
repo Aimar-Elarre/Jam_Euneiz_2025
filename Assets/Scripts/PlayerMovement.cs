@@ -114,6 +114,16 @@ public class PlayerMovement : MonoBehaviour
         camera1.SetActive(!cameraSwitch);
         camera2.SetActive(cameraSwitch);
 
+        //Rotacion de el player
+        if (moveInput.x > 0)
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0, -1 * 180, 0));
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
+        }
+        
     }
 
     void OnDrawGizmos()
