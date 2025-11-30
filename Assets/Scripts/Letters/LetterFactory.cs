@@ -13,7 +13,8 @@ public class LetterFactory : MonoBehaviour
         if (letter != null)
         {
             letter.SetDestination(destination);
-            letter.entregada.AddListener(gameManager.CartaEntregada);
+            letter.Manager = gameManager;
+            Debug.Log("creado");
         }
     }
 }

@@ -1,25 +1,29 @@
-using Unity.VisualScripting;
+﻿using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
 public class Letter : MonoBehaviour
 {
-    public UnityEvent entregada;
-    public UnityEvent perdiste;//crear el temporizador
     public enum Destination { House1, House2, House3, House4, House5 }
-    private Destination destination;
+    public Destination destination;
+    [Header("Temporizador")]
+    public float timeRemaining = 120f;   // Tiempo inicial en segundos
+    public bool isRunning = false;
+    public TextMeshProUGUI countdownText;
 
     private bool pickedUp = false;
 
     private Transform playerTransform;
     private PlayerInteraction player;
+    public GameManager Manager;
 
     public void Start()
     {
         playerTransform = FindAnyObjectByType<PlayerInteraction>().transform;
         player = playerTransform.GetComponent<PlayerInteraction>();
     }
-
+   
     public void SetDestination(Destination des) { destination = des; }
     public Destination GetDestination() { return destination; }
 
@@ -41,12 +45,34 @@ public class Letter : MonoBehaviour
         transform.SetParent(playerTransform);
         transform.position = playerTransform.position;
         transform.GetComponent<SpriteRenderer>().enabled = false;
+        isRunning = true;
     }
 
     public void Deliver()
     {
-        entregada.Invoke();
+        Manager.CartaEntregada();
+        Debug.Log("entregada");
         player.withLetter = false;
         Destroy(gameObject);
+    }
+    void Update()
+    {
+        if (isRunning)
+        {
+            if (timeRemaining > 0)
+            {
+                timeRemaining -= Time.deltaTime;
+                countdownText.text = Mathf.Ceil(timeRemaining).ToString();
+            }
+            else
+            {
+                Manager.Loss();
+                player.withLetter = false;
+                Destroy(gameObject);
+                timeRemaining = 0;
+                isRunning = false;
+                countdownText.text = "Tiempo!";
+            }
+        }
     }
 }

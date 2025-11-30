@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -10,8 +11,7 @@ public class GameManager : MonoBehaviour
     [Header("Estado del Juego")]
     public UnityEvent win;
     public UnityEvent loss;
-    private int indicecartas = 0;  
-    private bool cartasEntregadas = false;
+    public int indicecartas = 0;  
     private bool cartaEnEscena = false;
 
     [SerializeField] private LetterFactory factory;
@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
         else { Destroy(gameObject); }
-        CreateLeter();
     }
     public static GameManager Instance
     {
@@ -41,13 +40,19 @@ public class GameManager : MonoBehaviour
             else { return instance; }
         }
     }
-    //crear cartas y asignarle un enum, aunq esto ya se hace desde letterfactori
-    //puntos, con las cartas y el evento
     
     private void Update()
     {
-       //crear condicion de ganar 
-       if (cartasEntregadas && indicecartas == casasvecinos.Count-1 && !cartaEnEscena)
+        //CrearCartas
+        if (!cartaEnEscena && indicecartas < casasvecinos.Count)
+        {
+            Debug.Log("Carta");
+            factory.GenerateLetter((Letter.Destination)(indicecartas));
+            cartaEnEscena = true;
+            indicecartas++;
+        }
+        //crear condicion de ganar 
+       if (indicecartas >= casasvecinos.Count-1 && !cartaEnEscena)
        {
             Win();
        }
@@ -56,45 +61,16 @@ public class GameManager : MonoBehaviour
     {
         cartaEnEscena = false ;
     }
-    private void CreateLeter()
-    {
-      while (indicecartas < casasvecinos.Count)
-      {
-            if (!cartaEnEscena)
-            {
-                if(indicecartas == 0)
-                {
-                    factory.GenerateLetter(Letter.Destination.House1);
-                }
-                else if (indicecartas == 1)
-                {
-                    factory.GenerateLetter(Letter.Destination.House2);
-                }
-                else if (indicecartas == 2)
-                {
-                    factory.GenerateLetter(Letter.Destination.House3);
-                }
-                else if (indicecartas == 3)
-                {
-                    factory.GenerateLetter(Letter.Destination.House4);
-                }
-                else if (indicecartas == 4)
-                {
-                    factory.GenerateLetter(Letter.Destination.House5);
-                }
-                cartaEnEscena = true;
-                indicecartas++;
-            }
-      }
-    }
-    private void Win()
+    
+    public void Win()
     {
         win.Invoke();
+        Debug.Log("ganaste");
     }
-    private void Loss()
+    public void Loss()
     {
         //se le llamara desde leter con un evento para decir si se le acaba el tiempo
-
+        Debug.Log("perdiste");
         loss.Invoke();
     }
    

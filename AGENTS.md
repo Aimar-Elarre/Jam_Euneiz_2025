@@ -8,7 +8,7 @@
   - Layers:
     - Default, TransparentFX, Ignore Raycast, ground, Water, UI, CameraColision
 - Active game object:
-  - Name: Circle
+  - Name: MenuControler
   - Tag: Untagged
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
