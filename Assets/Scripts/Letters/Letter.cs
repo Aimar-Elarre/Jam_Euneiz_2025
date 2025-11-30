@@ -45,6 +45,9 @@ public class Letter : MonoBehaviour
         transform.SetParent(playerTransform);
         transform.position = playerTransform.position;
         transform.GetComponent<SpriteRenderer>().enabled = false;
+        transform.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
+        transform.GetComponentsInChildren<SpriteRenderer>()[2].enabled = false;
+        transform.GetComponentsInChildren<SpriteRenderer>()[3].enabled = false;
         isRunning = true;
     }
 
