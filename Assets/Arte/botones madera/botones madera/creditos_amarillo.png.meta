@@ -103,12 +103,12 @@ TextureImporter:
       name: creditos_amarillo_0
       rect:
         serializedVersion: 2
-        x: 584
-        y: 575
-        width: 746
-        height: 460
+        x: 585
+        y: 883
+        width: 463
+        height: 151
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -121,11 +121,33 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: creditos_amarillo_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 726beb001bea8ea4fa918cdd9e926c19
+      internalID: 1852713568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -136,6 +158,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       creditos_amarillo_0: -45844368005099616
+      creditos_amarillo_1: 1852713568
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

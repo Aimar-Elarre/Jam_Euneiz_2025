@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b69e95632b67a2e44a8313a69061f74d
+guid: 97fe2a379deb9e44ab1aead1ce23cd99
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 200285785390107829
-    second: nivel1_rojo_0
+      213: 6307289251481905119
+    second: menu inicio_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: nivel1_rojo_0
+      name: menu inicio_0
       rect:
         serializedVersion: 2
-        x: 584
-        y: 467
-        width: 464
-        height: 152
+        x: 0
+        y: 0
+        width: 1920
+        height: 1080
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5bcccb35cde87c200800000000000000
-      internalID: 200285785390107829
+      spriteID: fd7e732282ef78750800000000000000
+      internalID: 6307289251481905119
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 0d2001ff407815144aaeb02147fa8469
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      nivel1_rojo_0: 200285785390107829
+      menu inicio_0: 6307289251481905119
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
