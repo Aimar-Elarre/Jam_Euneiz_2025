@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 6462003430543922026}
   - component: {fileID: 7758439003783271202}
   - component: {fileID: 6944322218281197097}
-  - component: {fileID: 1054547413414101547}
   - component: {fileID: 8613110368826524481}
   m_Layer: 0
   m_Name: Square
@@ -37,6 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7864117752707869547}
+  - {fileID: 4944542499090412774}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &472323465660811919
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayerID: 1020128211
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 65a61db593dcd534d9fa562df456fcd6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -128,17 +128,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.1}
+  m_Offset: {x: -0.1, y: -0.100000024}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2.6666667, y: 1.5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.6, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &6462003430543922026
 Rigidbody2D:
@@ -152,7 +152,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 1
+  m_Mass: 0.6
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -182,9 +182,14 @@ MonoBehaviour:
   groundSpeed: 3
   airSpeed: 4
   jumpVelocity: 7.7
-  groundCheck: {fileID: 7864117752707869547}
-  groundCheckRadius: 0.3
-  groundLayer:
+  groundCheck1: {fileID: 7864117752707869547}
+  groundCheckRadius1: 0.2
+  groundLayer1:
+    serializedVersion: 2
+    m_Bits: 8
+  groundCheck2: {fileID: 4944542499090412774}
+  groundCheckRadius2: 0.2
+  groundLayer2:
     serializedVersion: 2
     m_Bits: 8
   camera1: {fileID: 0}
@@ -226,6 +231,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &3487186360992204420
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4944542499090412774}
+  m_Layer: 0
+  m_Name: GrounCheck2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4944542499090412774
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3487186360992204420}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.4, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7784072204872378505}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3764908635288209370
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +272,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7864117752707869547}
   m_Layer: 0
-  m_Name: GrounCheck
+  m_Name: GrounCheck1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -251,7 +287,7 @@ Transform:
   m_GameObject: {fileID: 3764908635288209370}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.061, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0.2, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

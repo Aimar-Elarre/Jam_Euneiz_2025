@@ -15,9 +15,13 @@ public class PlayerMovement : MonoBehaviour
     private bool jumpPressed;
 
     [Header("Ground Check")]
-    public Transform groundCheck;
-    public float groundCheckRadius = 0.1f;
-    public LayerMask groundLayer;
+    public Transform groundCheck1;
+    public float groundCheckRadius1 = 0.1f;
+    public LayerMask groundLayer1;
+
+    public Transform groundCheck2;
+    public float groundCheckRadius2 = 0.1f;
+    public LayerMask groundLayer2;
 
     [Header("Cameras")]
     public GameObject camera1;
@@ -59,15 +63,23 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // Ground check usando Raycast
-        float rayDistance = groundCheckRadius;
-        RaycastHit2D hit = Physics2D.Raycast(
-            groundCheck.position,
+        float rayDistance1 = groundCheckRadius1;
+        RaycastHit2D hit1 = Physics2D.Raycast(
+            groundCheck1.position,
             Vector2.down,
-            rayDistance,
-            groundLayer
+            rayDistance1,
+            groundLayer1
         );
 
-        isGrounded = hit.collider != null;
+        float rayDistance2 = groundCheckRadius2;
+        RaycastHit2D hit2 = Physics2D.Raycast(
+            groundCheck2.position,
+            Vector2.down,
+            rayDistance2,
+            groundLayer2
+        );
+
+        isGrounded = (hit1.collider  != null) || (hit2.collider != null);
     }
 
     void FixedUpdate()
@@ -95,6 +107,7 @@ public class PlayerMovement : MonoBehaviour
             if (rb.linearVelocityY > 0)
             {
                 animator.SetBool("isJumping", true);
+                animator.SetBool("isFalling", false);
             }
             else
             {
@@ -119,7 +132,7 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(new Vector3(0, -1 * 180, 0));
         }
-        else
+        else if(moveInput.x< 0)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
         }
@@ -128,11 +141,17 @@ public class PlayerMovement : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        if (groundCheck == null) return;
+        if (groundCheck1 == null) return;
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(groundCheck.position,
-                        groundCheck.position + Vector3.down * groundCheckRadius);
+        Gizmos.DrawLine(groundCheck1.position,
+                        groundCheck1.position + Vector3.down * groundCheckRadius1);
+
+        if (groundCheck2 == null) return;
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(groundCheck2.position,
+                        groundCheck2.position + Vector3.down * groundCheckRadius2);
     }
 }
 
