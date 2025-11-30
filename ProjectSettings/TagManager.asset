@@ -41,5 +41,20 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Fondo
+    uniqueID: 3519104221
+    locked: 0
+  - name: House
+    uniqueID: 71087747
+    locked: 0
+  - name: Platform
+    uniqueID: 1134291957
+    locked: 0
+  - name: Player
+    uniqueID: 1020128211
+    locked: 0
+  - name: Letter
+    uniqueID: 2401589053
+    locked: 0
   m_RenderingLayers:
   - Default
