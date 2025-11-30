@@ -322,7 +322,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -683,7 +683,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d732ed6d8dc4cc447981900faebe252b, type: 3}
+  m_Sprite: {fileID: -3127580252478410885, guid: b6830604db1f18d4e90cfc4df3710047, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
