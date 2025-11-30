@@ -1,10 +1,10 @@
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
-    
 
     [Header("Movement")]
     public float groundSpeed = 1.5f;
@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private Animator animator;
+    private bool hasLetter = false;
 
     void Awake()
     {
@@ -84,6 +85,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        animator.SetLayerWeight(1, transform.GetComponent<PlayerInteraction>().withLetter ? 1f : 0f);
+
         // Mobimiento
         float speed = isGrounded ? groundSpeed : airSpeed;
 

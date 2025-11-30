@@ -40,6 +40,7 @@ public class Letter : MonoBehaviour
 
         transform.SetParent(playerTransform);
         transform.position = playerTransform.position;
+        transform.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     public void Deliver()
