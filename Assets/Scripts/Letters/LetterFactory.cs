@@ -14,6 +14,7 @@ public class LetterFactory : MonoBehaviour
         {
             letter.SetDestination(destination);
             letter.entregada.AddListener(gameManager.CartaEntregada);
+            letter.perdiste.AddListener(gameManager.Loss);
         }
     }
 }
