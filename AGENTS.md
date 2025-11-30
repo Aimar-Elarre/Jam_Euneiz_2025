@@ -2,7 +2,7 @@
 - Project name: Jam_Euneiz_2025
 - Unity version: Unity 6000.0.59f2
 - Active scene:
-  - Name: SampleScene
+  - Name: Nivel1
   - Tags:
     - Untagged, Respawn, Finish, EditorOnly, MainCamera, Player, GameController
   - Layers:
