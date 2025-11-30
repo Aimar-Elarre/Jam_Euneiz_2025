@@ -11,11 +11,11 @@ public class GameManager : MonoBehaviour
     [Header("Estado del Juego")]
     public UnityEvent win;
     public UnityEvent loss;
-    public int indicecartas = 0;  
+    public int indicecartas = 0;
     private bool cartaEnEscena = false;
 
     [SerializeField] private LetterFactory factory;
-    
+
     [Header("Casas Configuration")]
     [SerializeField] private List<House> casasvecinos = new List<House>(); //la lista de las casas
 
@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
         }
         else { Destroy(gameObject); }
     }
+
     public static GameManager Instance
     {
         get
@@ -40,42 +41,57 @@ public class GameManager : MonoBehaviour
             else { return instance; }
         }
     }
-    
+
     private void Update()
     {
         //CrearCartas
         if (!cartaEnEscena && indicecartas < casasvecinos.Count)
         {
             Debug.Log("Carta");
-            factory.GenerateLetter((Letter.Destination)(indicecartas));
+
+            int indexCasa = indicecartas;
+
+            //Generar la carta
+            factory.GenerateLetter((Letter.Destination)indexCasa);
             cartaEnEscena = true;
+
+            //Remarcar casa destino
+            ResaltarCasa(indexCasa);
+
             indicecartas++;
         }
-        //crear condicion de ganar 
-       if (indicecartas >= casasvecinos.Count-1 && !cartaEnEscena)
-       {
+
+        //Crear condición de ganar 
+        if (indicecartas >= casasvecinos.Count - 1 && !cartaEnEscena)
+        {
             Win();
-       }
+        }
     }
+
     public void CartaEntregada()
     {
-        cartaEnEscena = false ;
+        cartaEnEscena = false;
     }
-    
+
     public void Win()
     {
         win.Invoke();
         Debug.Log("ganaste");
     }
+
     public void Loss()
     {
-        //se le llamara desde leter con un evento para decir si se le acaba el tiempo
         Debug.Log("perdiste");
         loss.Invoke();
     }
-   
 
-
-    
+    //Remarcar solo la casa correcta
+    private void ResaltarCasa(int index)
+    {
+        for (int i = 0; i < casasvecinos.Count; i++)
+        {
+            casasvecinos[i].Highlight(i == index);
+        }
+    }
 }
 
