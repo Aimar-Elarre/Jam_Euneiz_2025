@@ -8,7 +8,7 @@
   - Layers:
     - Default, TransparentFX, Ignore Raycast, ground, Water, UI, CameraColision
 - Active game object:
-  - Name: House (1)
+  - Name: Circle
   - Tag: Untagged
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
