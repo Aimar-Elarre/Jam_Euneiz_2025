@@ -203,29 +203,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   withLetter: 0
   interactionRange: 0.8
-<<<<<<< Updated upstream
---- !u!114 &1054547413414101547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1167677193029788517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c5f94d071fc6f44a91ec96d33152c2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  win:
-    m_PersistentCalls:
-      m_Calls: []
-  loss:
-    m_PersistentCalls:
-      m_Calls: []
-  factory: {fileID: 0}
-  casasvecinos: []
-=======
->>>>>>> Stashed changes
 --- !u!95 &8613110368826524481
 Animator:
   serializedVersion: 7
