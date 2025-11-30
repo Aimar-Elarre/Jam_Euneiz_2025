@@ -1,53 +1,33 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor.Events;
 using UnityEngine;
-using Random = UnityEngine.Random;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
 
     [Header("Estado del Juego")]
-    private int indicecartasactual = 0;  
-    private bool totalcartasentregadas = false;
+    public UnityEvent win;
+    public UnityEvent loss;
+    private int indicecartas = 0;  
+    private bool cartasEntregadas = false;
+    private bool cartaEnEscena = false;
 
     [SerializeField] private LetterFactory factory;
-    [Header("Configuración Casas")]
-    [SerializeField] public int num = 1; // con estos numeros haremos que salgan mas o menos cartas
-    //se generan todas en el mismo objeto de la factory, asi que solo aparezca una
-    [Header("Casas Configuration")]
-    [SerializeField] private List<HouseData> casasvecinos = new List<HouseData>(); //la lista de las casas
-    [System.Serializable]
-
-
-    public class HouseData
-    {
-        public Letter.Destination destination;  
-        public string casasnombre = "Casa";
-        [TextArea(3, 1)] public string instructionText = "";//para ver si funciona, en el debug
-    }
     
-    //prueba si hace las cartas
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.W))
-        {
-            Asignarlettersacasas();
-        }
-    }
-   
+    [Header("Casas Configuration")]
+    [SerializeField] private List<House> casasvecinos = new List<House>(); //la lista de las casas
 
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else { Destroy(gameObject); }
+        CreateLeter();
     }
-
     public static GameManager Instance
     {
         get
@@ -63,59 +43,63 @@ public class GameManager : MonoBehaviour
     }
     //crear cartas y asignarle un enum, aunq esto ya se hace desde letterfactori
     //puntos, con las cartas y el evento
-
-    public void Asignarlettersacasas()
+    
+    private void Update()
     {
-        indicecartasactual = 0;
-        totalcartasentregadas = false;
-
-        // hace que haya la misma cantidad de casas que en num
-        while (casasvecinos.Count > num)
-        {
-            casasvecinos.RemoveAt(casasvecinos.Count - 1);
-        }
-        while (casasvecinos.Count < num)
-        {
-            int numcasas = System.Enum.GetValues(typeof(Letter.Destination)).Length;
-            if (numcasas > 2)
+       //crear condicion de ganar 
+       if (cartasEntregadas && indicecartas == casasvecinos.Count-1 && !cartaEnEscena)
+       {
+            Win();
+       }
+    }
+    public void CartaEntregada()
+    {
+        cartaEnEscena = false ;
+    }
+    private void CreateLeter()
+    {
+      while (indicecartas < casasvecinos.Count)
+      {
+            if (!cartaEnEscena)
             {
-                Debug.Log("Esta siendo mayor a dos");
-            }
-            else
-            {
-                casasvecinos.Add(new HouseData
+                if(indicecartas == 0)
                 {
-                    casasnombre = $"Casa{casasvecinos.Count + 1}",
-                    destination = (Letter.Destination)UnityEngine.Random.Range(1, numcasas)
+                    factory.GenerateLetter(Letter.Destination.House1);
                 }
-                );
+                else if (indicecartas == 1)
+                {
+                    factory.GenerateLetter(Letter.Destination.House2);
+                }
+                else if (indicecartas == 2)
+                {
+                    factory.GenerateLetter(Letter.Destination.House3);
+                }
+                else if (indicecartas == 3)
+                {
+                    factory.GenerateLetter(Letter.Destination.House4);
+                }
+                else if (indicecartas == 4)
+                {
+                    factory.GenerateLetter(Letter.Destination.House5);
+                }
+                cartaEnEscena = true;
+                indicecartas++;
             }
-        }
-        SpawnNextLetter();
+      }
     }
-    // Genera carta siguiente
-    public void SpawnNextLetter()  
+    private void Win()
     {
-        if (indicecartasactual < num)
-        {
-            HouseData house = casasvecinos[indicecartasactual];
-            factory.GenerateLetter(house.destination);
-            Debug.Log($"Carta {indicecartasactual + 1} para {house.casasnombre} (Destino: {house.destination})");
-            indicecartasactual++;
-        }
+        win.Invoke();
     }
+    private void Loss()
+    {
+        //se le llamara desde leter con un evento para decir si se le acaba el tiempo
 
-    public void OnLetterDelivered()  //Llamado desde casas
-    {
-        if (indicecartasactual < num)
-        {
-            SpawnNextLetter();  // Genera siguiente
-        }
-        else
-        {
-            Debug.Log("¡Todas las cartas entregadas!");
-            totalcartasentregadas = true;
-        }
+        loss.Invoke();
     }
+   
+
+
+    
 }
 

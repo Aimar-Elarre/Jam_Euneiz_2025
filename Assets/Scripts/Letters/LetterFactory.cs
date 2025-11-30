@@ -4,6 +4,7 @@ public class LetterFactory : MonoBehaviour
 {
     [SerializeField]
     private GameObject letterPrefab;
+    public GameManager gameManager;
 
     public void GenerateLetter(Letter.Destination destination)
     {
@@ -12,6 +13,7 @@ public class LetterFactory : MonoBehaviour
         if (letter != null)
         {
             letter.SetDestination(destination);
+            letter.entregada.AddListener(gameManager.CartaEntregada);
         }
     }
 }
