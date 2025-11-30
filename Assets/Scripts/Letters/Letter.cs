@@ -1,4 +1,3 @@
-using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -14,10 +13,6 @@ public class Letter : MonoBehaviour
 
     private Transform playerTransform;
     private PlayerInteraction player;
-    [Header("Temporizador")]
-    public float timeRemaining = 120f;   // Tiempo inicial en segundos
-    public bool isRunning = false;
-    public TextMeshProUGUI countdownText;
 
     public void Start()
     {
@@ -45,7 +40,6 @@ public class Letter : MonoBehaviour
 
         transform.SetParent(playerTransform);
         transform.position = playerTransform.position;
-        isRunning = true;
     }
 
     public void Deliver()
@@ -53,25 +47,5 @@ public class Letter : MonoBehaviour
         entregada.Invoke();
         player.withLetter = false;
         Destroy(gameObject);
-    }
-    void Update()
-    {
-        if (isRunning)
-        {
-            if (timeRemaining > 0)
-            {
-                timeRemaining -= Time.deltaTime;
-                countdownText.text = Mathf.Ceil(timeRemaining).ToString();
-            }
-            else
-            {
-                perdiste.Invoke();
-                player.withLetter = false;
-                Destroy(gameObject);
-                timeRemaining = 0;
-                isRunning = false;
-                countdownText.text = "¡Tiempo!";
-            }
-        }
     }
 }
