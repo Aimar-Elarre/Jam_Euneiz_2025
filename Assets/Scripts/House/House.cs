@@ -31,7 +31,7 @@ public class House : MonoBehaviour
         var renderer = GetComponent<SpriteRenderer>();
         if (renderer != null)
         {
-            renderer.color = active ? Color.yellow : Color.white;
+            renderer.color = active ? Color.red : Color.white;
         }
     }
 }

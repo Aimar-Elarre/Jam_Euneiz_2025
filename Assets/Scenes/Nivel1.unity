@@ -1299,6 +1299,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2663009071687257530, guid: 2af4b0914f1f3e54d8a6fa484ff7e3a1, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2663009071687257530, guid: 2af4b0914f1f3e54d8a6fa484ff7e3a1, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2663009071687257530, guid: 2af4b0914f1f3e54d8a6fa484ff7e3a1, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8817108481242720623, guid: 2af4b0914f1f3e54d8a6fa484ff7e3a1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.14
@@ -3229,7 +3241,7 @@ MonoBehaviour:
       Enabled: 1
       Size: {x: 0.09, y: 0.11952381}
     HardLimits:
-      Enabled: 0
+      Enabled: 1
       Size: {x: 0.8, y: 0.8}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 0
